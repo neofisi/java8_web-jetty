@@ -58,6 +58,16 @@
 			<artifactId>disruptor</artifactId>
 			<version>${disruptor.version}</version>
 		</dependency>
+
+		<!-- Dependencia solo usada para generar la ofuscacion en el password usado en el keystore, solo por fines practicos se agrego para ser ejecutado por codigo -->		
+		<!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-util -->
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-util</artifactId>
+		    <version>9.4.31.v20200723</version>
+		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<finalName>jettyproyectSample</finalName>
@@ -66,14 +76,16 @@
 				<plugin>
 					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
-					<version>9.1.3.v20140225</version>
+					<version>9.4.27.v20200227</version>
 					<configuration>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
 						<webApp>
 							<contextPath>/jettyproyectSample</contextPath>
 						</webApp>
 						<httpConnector>
 							<port>8085</port>
 						</httpConnector>
+						 <jettyXml>src/main/resources/jetty.xml,src/main/resources/jetty-ssl.xml,src/main/resources/jetty-ssl-context.xml,src/main/resources/jetty-https.xml</jettyXml>
 					</configuration>
 				</plugin>
 				<plugin>
